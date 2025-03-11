@@ -1,0 +1,24 @@
+describe('agregar tareas', () => {
+    beforeEach(() => {
+  
+        cy.visit('https://todomvc.com/examples/react/dist/')
+        cy.get(' .new-todo').type('tarea 1{enter}')
+      
+      })
+    it('agregar una tarea a la lista', () => {
+        cy.get('[data-testid="todo-item-label"]').contains("tarea 1")
+        cy.contains('tarea 1').should('be.visible')
+    })
+    it('marcar tarea como completada', () => {
+        cy.get('[data-testid="todo-item-label"]').contains("tarea 1")
+        cy.get('[data-testid="todo-item-toggle"]').click()
+        cy.get('[data-testid="todo-item-label"]').should('be.visible')
+        
+    })
+        it('desmarcar tarea completada', () => {
+            cy.get('[data-testid="todo-item-label"]').contains("tarea 1")
+            cy.get('[data-testid="todo-item-toggle"]').click()
+            cy.get('[data-testid="todo-item-toggle"]').click()
+            cy.get('[data-testid="todo-item-label"]').should('be.visible')
+        })
+  })
